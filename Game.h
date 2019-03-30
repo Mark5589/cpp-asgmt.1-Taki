@@ -2,6 +2,7 @@
 #define GAME_H
 #include "Player.h"
 #include "Card.h"
+
 class Game {
 private:
 	//private members and functions
@@ -9,7 +10,7 @@ private:
 	Card current_card;
 	Card players_card_select;
 	Player current_player;
-	Player* players_arr;
+	vector <Player> players_arr;
 	int mDirection = 1;
 public:
 	//public members and functions
@@ -32,21 +33,21 @@ public:
 
 	int get_input_key();
 
-	int check_card_validity(int&, const int&);
-
 	//Card select - Cases: 
 	bool valid_select(const Player&, const Card&, const Card&, const int&);
 	bool invalid_select(const Player&, const Card&, const Card&, const int&);
 	bool pass_select(Player&,const int&);
 
 	//Direction of the game
-	void change_direction(const Card&);
+	void change_direction(const Card&, int&);
+	int validate_move(const int&);
 	
 	//Players turn
-	int get_player_turn_case(int , int&);	
+	int get_player_turn_case(int);	
 	void caseHandler(const int&, int&,int&);
 	//DEBUG
 	void DEBUG_PRINT_PLAYERS();
+	void GAME_LOG(const int&);
 };
 #endif
 
