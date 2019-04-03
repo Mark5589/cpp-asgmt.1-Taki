@@ -1,8 +1,8 @@
 CC =g++
-FLAG =-std=c++11
+FLAG =-std=c++0x
 
 src = $(wildcard *.cpp)
 obj = $(src:.c = .o)
 
-myprog: $(obj)
-	$(CC) $(FLAG) -o $@ $^
+a: $(obj)
+	$(CC) $(FLAG) $^

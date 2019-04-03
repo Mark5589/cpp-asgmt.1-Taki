@@ -1,3 +1,6 @@
+/* Mark */
+
+/* Gal  */
 #ifndef GAME_H
 #define GAME_H
 #include "Player.h"
@@ -7,31 +10,34 @@ class Game {
 private:
 	//private members and functions
 	int cards_num, players_num;
-	Card current_card;
-	Card players_card_select;
+
 	Player current_player;
 	vector <Player> players_arr;
-	int mDirection = 1;
+	Game(const Game& g){}
+	Game&operator=(const Game& g){};
+
+
 public:
+	int mDirection;
 	//public members and functions
 	void start();
+	Game(){}
 
-	void msg_welcome();
-	void msg_rules();
+
 	void msg_players_num();
 	void msg_cards_num();
 	void set_players_name();
 
 	//cards.
-	void set_game_initial_gamecard();
 	void card_dealing(Player& player); // 1
 
 
 	bool find_winner();
 	void set_round_player(const int&);
-	void show_gameStatus_stamp(const Player&);
+	void show_gameStatus_stamp(const Player&, const Card&);
 
 	int get_input_key();
+
 
 	//Card select - Cases: 
 	bool valid_select(const Player&, const Card&, const Card&, const int&);
@@ -43,8 +49,8 @@ public:
 	int validate_move(const int&);
 	
 	//Players turn
-	int get_player_turn_case(int);	
-	void caseHandler(const int&, int&,int&);
+	int get_player_turn_case(int,const Card&);
+	void caseHandler(const int&, int&,int&,Card&);
 	//DEBUG
 	void DEBUG_PRINT_PLAYERS();
 	void GAME_LOG(const int&);
